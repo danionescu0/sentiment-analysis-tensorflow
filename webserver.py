@@ -6,9 +6,10 @@ from read_config import read_env_var
 
 
 app = FastAPI()
-print(read_env_var("language"))
-model = load_model(read_env_var("language"))
-dictionary = load_dictionary(read_env_var("language"))
+language = read_env_var("language")
+model = load_model(language)
+dictionary = load_dictionary(language)
+print(f"Loading model with language {language}")
 
 
 class Sentiment(BaseModel):
@@ -17,6 +18,7 @@ class Sentiment(BaseModel):
 
 class Result(BaseModel):
     phrase: str
+    language: str
     positive: float
     negative: float
 
@@ -24,4 +26,4 @@ class Result(BaseModel):
 @app.put("/api/analize", response_model=Result)
 def get_users(sentiment: Sentiment):
     result = model.predict([normalize_text(dictionary, sentiment.phrase)])
-    return Result(phrase=sentiment.phrase, positive=result[0][1], negative=result[0][0])
+    return Result(phrase=sentiment.phrase, positive=result[0][1], negative=result[0][0], language=language)

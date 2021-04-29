@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    web-ro:
+        build:
+            context: .
+        environment:
+            - language=ro
+        ports:
+            - "8080:8001"
+        entrypoint: uvicorn webserver:app --reload --host 0.0.0.0 --port 8001
+    web-en:
+        build:
+            context: .
+        environment:
+            - language=en
+        ports:
+            - "8081:8001"
+        entrypoint: uvicorn webserver:app --reload --host 0.0.0.0 --port 8001
