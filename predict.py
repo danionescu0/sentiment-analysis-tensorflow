@@ -4,6 +4,7 @@ import pickle
 import argparse
 import numpy as nm
 
+
 def convertTextToIndex(dictionary, text):
     document = []
     text = text.lower().encode('utf-8')
@@ -21,8 +22,8 @@ def convertTextToIndex(dictionary, text):
         document = nm.pad(document, (0, ln), 'constant')
     return document
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Train with lstm')
     parser.add_argument('language')
     parser.add_argument('text')
