@@ -8,7 +8,6 @@ services:
             - language=ro
         ports:
             - "8080:8001"
-        entrypoint: uvicorn webserver:app --reload --host 0.0.0.0 --port 8001
     web-en:
         build:
             context: .
@@ -16,4 +15,3 @@ services:
             - language=en
         ports:
             - "8081:8001"
-        entrypoint: uvicorn webserver:app --reload --host 0.0.0.0 --port 8001
