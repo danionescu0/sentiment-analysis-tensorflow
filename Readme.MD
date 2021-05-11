@@ -4,16 +4,24 @@ Forked from: https://github.com/katakonst/sentiment-analysis-tensorflow
 
 This is a example of sentiment analisys for romanian and english language built up on tensorflow and tflearn
 
-###Enhancements:
+### Enhancements:
 
 * added a webserver to expose a api
 
 * added  Docker containers
 
-###Swagger: 
+
+### Usage with docker
+Language parameter can be en/ro
+````bash
+docker run -e "language=en" --publish 8080:8001 danionescu/sentiment-analysis-tensorflow:latest
+````
+
+
+### Swagger: 
 http://localhost:8001/docs
 
-###Usage with curl
+### Usage with curl
 ````bash
 curl -X 'PUT' \
   'http://localhost:8001/api/analize' \
@@ -34,24 +42,17 @@ Response body:
 ````
 
 
-###Running in dev mode
+### Running in dev mode
 ````bash
 cd project_folder
 uvicorn webserver:app --reload --host 0.0.0.0 --port 8001
 
 ````
 
-###Running with docker compose
+### Running with docker compose
 ````bash
 docker-compose up
 ````
-
-###Usage with docker
-Language parameter can be en/ro
-````bash
-docker run -e "language=en" --publish 8080:8001 danionescu/sentiment-analysis-tensorflow:latest
-````
-
 
 # Accuracy
 After 10 epochs for romanian dataset  :
